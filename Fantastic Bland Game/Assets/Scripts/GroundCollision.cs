@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class GroundCollision : MonoBehaviour
 {
-	[SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private MeshRenderer meshRenderer;
 
-	private void OnCollisionEnter(Collision collision)
-	{
-		meshRenderer.material.color = GetRandomColor();
-	}
+    private void OnCollisionEnter(Collision collision)
+    {
+        meshRenderer.material.color = GetRandomColor();
+    }
 
-	private Color GetRandomColor()
-	{
-		Color color = new Color(Random.Range(0f,1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
-		return color;
-	}
+    private void OnCollisionExit(Collision collision)
+    {
+        meshRenderer.material.color = GetRandomColor();
+    }
+
+    private Color GetRandomColor()
+    {
+        Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+        return color;
+    }
 }
