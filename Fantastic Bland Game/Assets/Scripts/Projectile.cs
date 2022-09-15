@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
             //projectileBody.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
 
             // or this one (movement with the transform), both are ok
-            transform.Translate(transform.forward * speed * Time.deltaTime);
+            //transform.Translate(transform.forward * speed * Time.deltaTime);
         }
     }
 
