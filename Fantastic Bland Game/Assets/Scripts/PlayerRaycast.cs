@@ -15,7 +15,7 @@ public class PlayerRaycast : MonoBehaviour
 
             if (thereWasHit)
             {
-                Destroy(result.collider.gameObject);
+                result.collider.gameObject.GetComponent<MeshRenderer>().material.color = GetRandomColor();
             }
         }
     }

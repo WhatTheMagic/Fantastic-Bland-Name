@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    [SerializeField] private PlayerTurn playerTurn;
     [SerializeField] private Rigidbody characterBody;
     [SerializeField] private float speed = 2f;
 
     void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0)
+        if (playerTurn.IsPlayerTurn())
         {
-            transform.Translate(transform.right * speed * Time.deltaTime * Input.GetAxis("Horizontal"));
-        }
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                transform.Translate(transform.right * speed * Time.deltaTime * Input.GetAxis("Horizontal"));
+            }
 
-        if (Input.GetAxis("Vertical") != 0)
-        {
-            transform.Translate(transform.forward * speed * Time.deltaTime * Input.GetAxis("Vertical"));
-        }
+            if (Input.GetAxis("Vertical") != 0)
+            {
+                transform.Translate(transform.forward * speed * Time.deltaTime * Input.GetAxis("Vertical"));
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsTouchingFloor())
-        {
-            Jump();
+            if (Input.GetKeyDown(KeyCode.Space) && IsTouchingFloor())
+            {
+                Jump();
+            }
         }
     }
 
