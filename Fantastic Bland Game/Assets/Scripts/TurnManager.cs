@@ -9,12 +9,16 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private PlayerTurn playerTwo;
     [SerializeField] private float timeBetweenTurns;
 
+    [SerializeField] private GameObject cam1;
+    [SerializeField] private GameObject cam2;
+
     private int currentPlayerIndex;
     private bool waitingForNextTurn;
     private float turnDelay;
 
     private void Awake()
     {
+        cam1.SetActive(true);
         if (instance == null)
         {
             instance = this;
@@ -63,10 +67,14 @@ public class TurnManager : MonoBehaviour
         if (currentPlayerIndex == 1)
         {
             currentPlayerIndex = 2;
+            cam1.SetActive(false);
+            cam2.SetActive(true);
         }
         else if (currentPlayerIndex == 2)
         {
             currentPlayerIndex = 1;
+            cam1.SetActive(true);
+            cam2.SetActive(false);
         }
     }
 }
