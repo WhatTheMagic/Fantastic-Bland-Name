@@ -25,6 +25,8 @@ public class TurnManager : MonoBehaviour
             currentPlayerIndex = 1;
             playerOne.SetPlayerTurn(1);
             playerTwo.SetPlayerTurn(2);
+            cam1.SetActive(true);
+            cam2.SetActive(false);
         }
     }
 
