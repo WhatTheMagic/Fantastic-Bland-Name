@@ -32,7 +32,7 @@ public class CharacterController : MonoBehaviour
     private void Jump()
     {
         //characterBody.velocity = Vector3.up * 10f;
-        characterBody.AddForce(Vector3.up * 500f);
+        characterBody.AddForce(Vector3.up * 400f);
     }
 
     private bool IsTouchingFloor()
