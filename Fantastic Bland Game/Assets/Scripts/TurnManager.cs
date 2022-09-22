@@ -32,14 +32,17 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
-        if (waitingForNextTurn)
+        if (gameObject != null)
         {
-            turnDelay += Time.deltaTime;
-            if (turnDelay >= timeBetweenTurns)
+            if (waitingForNextTurn)
             {
-                turnDelay = 0;
-                waitingForNextTurn = false;
-                ChangeTurn();
+                turnDelay += Time.deltaTime;
+                if (turnDelay >= timeBetweenTurns)
+                {
+                    turnDelay = 0;
+                    waitingForNextTurn = false;
+                    ChangeTurn();
+                }
             }
         }
     }
@@ -66,17 +69,20 @@ public class TurnManager : MonoBehaviour
 
     private void ChangeTurn()
     {
-        if (currentPlayerIndex == 1)
-        {
-            currentPlayerIndex = 2;
-            cam1.SetActive(false);
-            cam2.SetActive(true);
-        }
-        else if (currentPlayerIndex == 2)
-        {
-            currentPlayerIndex = 1;
-            cam1.SetActive(true);
-            cam2.SetActive(false);
+        if (gameObject != null)
+		{
+            if (currentPlayerIndex == 1)
+            {
+                currentPlayerIndex = 2;
+                cam1.SetActive(false);
+                cam2.SetActive(true);
+            }
+            else if (currentPlayerIndex == 2)
+            {
+                currentPlayerIndex = 1;
+                cam1.SetActive(true);
+                cam2.SetActive(false);
+            }
         }
     }
 }

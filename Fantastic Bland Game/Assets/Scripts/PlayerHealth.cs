@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
 	private float hitTime = 1;
 	private float hitTimer = 0;
 	private bool canHit = true;
+	private bool isColliding; 
 
 
 	void Start()
@@ -20,8 +21,33 @@ public class PlayerHealth : MonoBehaviour
 		playerRenderer.material.color = new Color(0f, 0f, 1f, 0f);
 	}
 
+	private void OnTriggerEnter(Collider other)
+	{
+		if (isColliding)
+		{
+			return;
+		}
+		isColliding = true;
+
+		if (other.gameObject.CompareTag("Projectile"))
+		{
+			TakeDamage(1);
+		}
+
+		if (other.gameObject.CompareTag("Water"))
+		{
+			TakeDamage(3);
+		}
+
+		if (other.gameObject.CompareTag("Pickup") && playerHealth < 3)
+		{
+			playerHealth = playerHealth + 1;
+		}
+	}
+
 	void Update()
 	{
+		isColliding = false;
 		hitTimer += Time.deltaTime;
 		if (hitTimer > hitTime)
 		{
@@ -44,24 +70,6 @@ public class PlayerHealth : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.CompareTag("Projectile"))
-		{
-			TakeDamage(1);
-		}
-
-		if (other.gameObject.CompareTag("Water"))
-		{
-			TakeDamage(3);
-		}
-
-		if (other.gameObject.CompareTag("Pickup") && playerHealth < 3)
-		{
-			playerHealth = playerHealth + 1;
-		}
-	}
-
 	public void TakeDamage(int damage)
 	{
 		if (!canHit)
@@ -73,7 +81,7 @@ public class PlayerHealth : MonoBehaviour
 			playerHealth = playerHealth - damage;
 			if (playerHealth <= 0)
 			{
-				Destroy(this.gameObject);
+				gameObject.SetActive(false);
 				gameOverMenu.SetActive(true);
 				Cursor.visible = true;
 			}

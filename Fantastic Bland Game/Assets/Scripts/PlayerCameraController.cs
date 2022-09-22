@@ -22,9 +22,12 @@ public class PlayerCameraController : MonoBehaviour
 
     void Update()
     {
-        if (playerTurn.IsPlayerTurn())
+        if (!Pause.gameIsPaused)
         {
-            ReadRotationInput();
+            if (playerTurn.IsPlayerTurn())
+            {
+                ReadRotationInput();
+            }
         }
     }
 
