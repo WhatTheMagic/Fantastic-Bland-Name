@@ -9,9 +9,13 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     public static bool gameIsPaused;
 
+    [SerializeField] private GameObject playerCam;
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+        Cursor.visible = false;
     }
 
     public void QuitGame()
@@ -22,6 +26,7 @@ public class Pause : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene(0);
+        Cursor.visible = true;
     }
 
     void Update()
@@ -43,11 +48,16 @@ public class Pause : MonoBehaviour
         {
             Time.timeScale = 0f;
             pauseMenu.SetActive(true);
+            Cursor.visible = true;
+            playerCam.SetActive(false); 
+
         }
         else
         {
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
+            Cursor.visible = false;
+            playerCam.SetActive(true);
         }
     }
 }

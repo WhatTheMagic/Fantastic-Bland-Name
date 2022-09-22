@@ -9694,9 +9694,10 @@ GameObject:
   - component: {fileID: 4361801158873524}
   - component: {fileID: 198656289721292014}
   - component: {fileID: 199514137936353666}
+  - component: {fileID: 3809691496620170098}
   m_Layer: 0
   m_Name: SmallExplosion
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14595,6 +14596,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!136 &3809691496620170098
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828176872806910}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.665385
+  m_Height: 3.33077
+  m_Direction: 1
+  m_Center: {x: 0.087586045, y: 1.7016055e-16, z: 0.043223977}
 --- !u!1 &1834016579923706
 GameObject:
   m_ObjectHideFlags: 0
