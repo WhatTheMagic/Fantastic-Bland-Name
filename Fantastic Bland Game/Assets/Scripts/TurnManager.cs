@@ -51,7 +51,7 @@ public class TurnManager : MonoBehaviour
                     ChangeTurn();
                 }
             }
-            if (turnDelay <= 0)
+            else if (turnDelay <= 0)
             {
                 currentTurnTime += Time.deltaTime;
 
