@@ -84,6 +84,7 @@ public class PlayerHealth : MonoBehaviour
 				gameObject.SetActive(false);
 				gameOverMenu.SetActive(true);
 				Cursor.visible = true;
+				Time.timeScale = 0f;
 			}
 
 			hitTimer = 0;

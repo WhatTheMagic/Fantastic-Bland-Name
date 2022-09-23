@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TurnManager : MonoBehaviour
 {
     private static TurnManager instance;
     [SerializeField] private PlayerTurn playerOne;
     [SerializeField] private PlayerTurn playerTwo;
+    [SerializeField] private float maxTimePerTurn;
     [SerializeField] private float timeBetweenTurns;
+    [SerializeField] private Image clock;
+    [SerializeField] private TextMeshProUGUI seconds;
 
     [SerializeField] private GameObject cam1;
     [SerializeField] private GameObject cam2;
@@ -15,6 +20,8 @@ public class TurnManager : MonoBehaviour
     private int currentPlayerIndex;
     private bool waitingForNextTurn;
     private float turnDelay;
+
+    private float currentTurnTime;
 
     private void Awake()
     {
@@ -44,7 +51,27 @@ public class TurnManager : MonoBehaviour
                     ChangeTurn();
                 }
             }
+            if (turnDelay <= 0)
+            {
+                currentTurnTime += Time.deltaTime;
+
+                if (currentTurnTime >= maxTimePerTurn)
+                {
+                    ChangeTurn();
+                    ResetTimers();
+                }
+                UpdateTimeVisuals();
+            }
+            else
+            {
+                turnDelay -= Time.deltaTime;
+            }
         }
+    }
+
+    public bool PlayerCanPlay()
+    {
+        return turnDelay <= 0;
     }
 
     public bool IsItPlayerTurn(int index)
@@ -83,6 +110,21 @@ public class TurnManager : MonoBehaviour
                 cam1.SetActive(true);
                 cam2.SetActive(false);
             }
+
+            ResetTimers();
+            UpdateTimeVisuals();
         }
+    }
+
+    private void ResetTimers()
+    {
+        currentTurnTime = 0;
+        turnDelay = timeBetweenTurns;
+    }
+
+    private void UpdateTimeVisuals()
+    {
+        clock.fillAmount = 1 - (currentTurnTime / maxTimePerTurn);
+        seconds.text = Mathf.RoundToInt(maxTimePerTurn - currentTurnTime).ToString();
     }
 }
