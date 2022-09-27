@@ -13,7 +13,7 @@ public class CharacterWeapon : MonoBehaviour
         if (!Pause.gameIsPaused)
         {
             bool IsPlayerTurn = playerTurn.IsPlayerTurn();
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 if (IsPlayerTurn)
                 {
